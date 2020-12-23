@@ -58,35 +58,6 @@ public class NetUtils {
     }
 
     /**
-     * 获取网络名称
-     *
-     * @param context
-     * @return
-     */
-    public static String getNetworkTypeName(Context context) {
-        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo;
-        String type = NETWORK_TYPE_DISCONNECT;
-        if (manager == null || (networkInfo = manager.getActiveNetworkInfo()) == null) {
-            return type;
-        }
-
-        if (networkInfo.isConnected()) {
-            String typeName = networkInfo.getTypeName();
-            if ("WIFI".equalsIgnoreCase(typeName)) {
-                type = NETWORK_TYPE_WIFI;
-            } else if ("MOBILE".equalsIgnoreCase(typeName)) {
-                //String proxyHost = android.net.Proxy.getDefaultHost();//deprecated
-                String proxyHost = System.getProperty("http.proxyHost");
-                type = TextUtils.isEmpty(proxyHost) ? (isFastMobileNetwork(context) ? NETWORK_TYPE_3G : NETWORK_TYPE_2G) : NETWORK_TYPE_WAP;
-            } else {
-                type = NETWORK_TYPE_UNKNOWN;
-            }
-        }
-        return type;
-    }
-
-    /**
      * 检查网络状态
      */
     public static boolean isConnected(Context context) {
@@ -146,55 +117,6 @@ public class NetUtils {
         intent.setComponent(cm);
         intent.setAction("android.intent.action.VIEW");
         act.startActivityForResult(intent, 0);
-    }
-
-
-    /**
-     *
-     */
-
-    private static boolean isFastMobileNetwork(Context context) {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (telephonyManager == null) {
-            return false;
-        }
-
-        switch (telephonyManager.getNetworkType()) {
-            case TelephonyManager.NETWORK_TYPE_1xRTT:
-                return false;
-            case TelephonyManager.NETWORK_TYPE_CDMA:
-                return false;
-            case TelephonyManager.NETWORK_TYPE_EDGE:
-                return false;
-            case TelephonyManager.NETWORK_TYPE_EVDO_0:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_EVDO_A:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_GPRS:
-                return false;
-            case TelephonyManager.NETWORK_TYPE_HSDPA:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_HSPA:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_HSUPA:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_UMTS:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_EHRPD:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_EVDO_B:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_HSPAP:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_IDEN:
-                return false;
-            case TelephonyManager.NETWORK_TYPE_LTE:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_UNKNOWN:
-                return false;
-            default:
-                return false;
-        }
     }
 
     /**
@@ -264,7 +186,6 @@ public class NetUtils {
     public static final void setNetwork(final Context context) {
         AlertDialog alert = null;
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setIcon(R.mipmap.ic_launcher);
         builder.setTitle("提示");
         builder.setMessage("网络不可用，是否现在设置网络？ ");
         builder.setPositiveButton("立刻设置", new DialogInterface.OnClickListener() {

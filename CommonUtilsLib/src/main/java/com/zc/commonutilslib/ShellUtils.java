@@ -38,7 +38,6 @@ public class ShellUtils {
      * @param command command
      * @param isRoot whether need to run with root
      * @return
-     * @see alpha.cyber.intelmain.util.ShellUtils#execCommand(String[], boolean, boolean)
      */
     public static CommandResult execCommand(String command, boolean isRoot) {
         return execCommand(new String[] {command}, isRoot, true);
@@ -53,7 +52,6 @@ public class ShellUtils {
      * @param commands command array
      * @param isRoot whether need to run with root
      * @return
-     * @see alpha.cyber.intelmain.util.ShellUtils#execCommand(String[], boolean, boolean)
      */
     public static CommandResult execCommand(String[] commands, boolean isRoot) {
         return execCommand(commands, isRoot, true);
@@ -67,7 +65,6 @@ public class ShellUtils {
      * @param isRoot whether need to run with root
      * @param isNeedResultMsg whether need result msg
      * @return
-     * @see alpha.cyber.intelmain.util.ShellUtils#execCommand(String[], boolean, boolean)
      */
     public static CommandResult execCommand(String command, boolean isRoot, boolean isNeedResultMsg) {
         return execCommand(new String[] {command}, isRoot, isNeedResultMsg);

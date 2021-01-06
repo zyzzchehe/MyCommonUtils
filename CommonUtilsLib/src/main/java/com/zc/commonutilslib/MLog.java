@@ -22,6 +22,22 @@ public class MLog {
     private static SimpleDateFormat myLogSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 日志的输出格式
     private static SimpleDateFormat logfile = new SimpleDateFormat("yyyy-MM-dd");// 日志文件格式
     public Context context;
+    private static MLog mLog;
+
+    /**
+     *
+     * @param fileName 生成的文件名，可以自定义
+     * @return
+     */
+    public static MLog getInstance(String fileName){
+        MYLOGFILEName = fileName;
+        if(mLog == null){
+            mLog = new MLog();
+        }
+        return mLog;
+    }
+
+    private MLog(){}
 
     public static void w(String tag, Object msg) { // 警告信息
         log(tag, msg.toString(), 'w');

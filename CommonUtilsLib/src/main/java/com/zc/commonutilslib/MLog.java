@@ -35,7 +35,7 @@ public class MLog {
     /**
      * @param fileName 生成的文件名，可以自定义
      */
-    public static void initFileName(String fileName){
+    public void initFileName(String fileName){
         MYLOGFILEName = fileName;
     }
 

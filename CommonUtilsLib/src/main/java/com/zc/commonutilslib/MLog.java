@@ -24,13 +24,7 @@ public class MLog {
     public Context context;
     private static MLog mLog;
 
-    /**
-     *
-     * @param fileName 生成的文件名，可以自定义
-     * @return
-     */
-    public static MLog getInstance(String fileName){
-        MYLOGFILEName = fileName;
+    public static MLog getInstance(){
         if(mLog == null){
             mLog = new MLog();
         }
@@ -38,6 +32,12 @@ public class MLog {
     }
 
     private MLog(){}
+    /**
+     * @param fileName 生成的文件名，可以自定义
+     */
+    public static void initFileName(String fileName){
+        MYLOGFILEName = fileName;
+    }
 
     public static void w(String tag, Object msg) { // 警告信息
         log(tag, msg.toString(), 'w');

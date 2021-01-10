@@ -30,12 +30,12 @@ public class AlertDialogUtil {
         }
     }
 
-    public static void showDialog(Context mContext, String title, String msg) {
+    public static void showDialog(Context mContext, String title, String msg,boolean canCancel) {
         closeDialog();
         mAlertDialog = new AlertDialog.Builder(mContext,android.R.style.Theme_DeviceDefault_Light_Dialog_Alert).create();
         mAlertDialog.setTitle(title);
         mAlertDialog.setMessage(msg);
-        mAlertDialog.setCancelable(false);
+        mAlertDialog.setCancelable(canCancel);
         if (null != mAlertDialog
                 && !mAlertDialog.isShowing()
                 && !((Activity)mContext).isFinishing()) {//检查activity是否finishing!!!

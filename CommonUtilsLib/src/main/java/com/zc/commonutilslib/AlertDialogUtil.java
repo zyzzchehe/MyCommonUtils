@@ -12,33 +12,30 @@ public class AlertDialogUtil {
 
     protected static AlertDialog mAlertDialog;
 
-    public static void showDialogWithOk(Context mContext, String title, String msg) {
+    public static void showDialogWithOk(Context mContext, String title, String msg,String btnText) {
         closeDialog();
-        mAlertDialog = new AlertDialog.Builder(mContext, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert).create();
+        mAlertDialog = new AlertDialog.Builder(mContext).create();
         mAlertDialog.setTitle(title);
         mAlertDialog.setMessage(msg);
-        mAlertDialog.setCancelable(false);
-        mAlertDialog.setButton( DialogInterface.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
+        mAlertDialog.setButton(DialogInterface.BUTTON_POSITIVE,btnText, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
         });
         if (null != mAlertDialog
-                && !mAlertDialog.isShowing()
-                && !((Activity)mContext).isFinishing()) {//检查activity是否finishing!!!
+                && !mAlertDialog.isShowing()) {
             mAlertDialog.show();
         }
     }
 
     public static void showDialog(Context mContext, String title, String msg,boolean canCancel) {
         closeDialog();
-        mAlertDialog = new AlertDialog.Builder(mContext,android.R.style.Theme_DeviceDefault_Light_Dialog_Alert).create();
+        mAlertDialog = new AlertDialog.Builder(mContext).create();
         mAlertDialog.setTitle(title);
         mAlertDialog.setMessage(msg);
         mAlertDialog.setCancelable(canCancel);
         if (null != mAlertDialog
-                && !mAlertDialog.isShowing()
-                && !((Activity)mContext).isFinishing()) {//检查activity是否finishing!!!
+                && !mAlertDialog.isShowing()) {
             mAlertDialog.show();
         }
     }

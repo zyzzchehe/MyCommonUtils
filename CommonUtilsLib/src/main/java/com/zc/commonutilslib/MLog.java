@@ -16,7 +16,7 @@ public class MLog {
     private static Boolean MY_LOG_SWITCH = true; // 日志文件总开关
     private static Boolean MY_LOG_WRITE_TO_FILE = true;// 日志写入文件开关
     private static char MY_LOG_TYPE = 'v';// 输入日志类型，w代表只输出告警信息等，v代表输出所有信息
-    private static String MY_LOG_PATH_SDCARD_DIR = "/sdcard/my_log";// 日志文件在sdcard中的路径
+    private static String MY_LOG_PATH_SDCARD_DIR = Environment.getExternalStorageDirectory()+"/my_log";// 日志文件在sdcard中的路径
     private static int SDCARD_LOG_FILE_SAVE_DAYS = 0;// sd卡中日志文件的最多保存天数
     private static String MYLOGFILEName = "_Log.txt";// 本类输出的日志文件名称
     private static SimpleDateFormat myLogSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 日志的输出格式
